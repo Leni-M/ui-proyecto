@@ -1,10 +1,10 @@
 import React from 'react';
-import ReactDOM from 'react-dom';/*biblioteca app web*/
+import ReactDOM from 'react-dom';
 
 import './index.css';
 
 import App from './App';
-import registerServiceWorker from './registerServiceWorker';/*simulate data web local*/
+import registerServiceWorker from './registerServiceWorker';
 
 ReactDOM.render(<App />, document.getElementById('root'));
-registerServiceWorker();/*usar el importado*/
+registerServiceWorker();

@@ -2,8 +2,11 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
+//data
 import {tareas} from './tasks.json';
 
+//subcomponentes
+import TareasForm from './components/TareasForm';
 
 
 class App extends Component {
@@ -14,6 +17,11 @@ class App extends Component {
         }
     }
     
+    handleAddTarea(tarea){
+        this.state({
+            tareas:[... this.state.tareas,tarea]
+        })
+    }
 
   render() {
      const tasksAll= this.state.tareas.map((tarea,i)=>{
@@ -46,13 +54,21 @@ class App extends Component {
                     </span>
                 </a>     
              </nav>
+        
              <div className="container">
               <div className="row mt-4">
-                {tasksAll}
+                <div className="col-md-3">
+                    <img src={logo} className="App-logo" alt="logo" />
+                    <TareasForm onAddTarea={this.handleAddTarea}/>
+                </div>
+        
+                <div className="col-md-8">
+                    <div className="row"></div>
+                 </div>
               </div>
              </div>
         
-         <img src={logo} className="App-logo" alt="logo" />
+         
 
       </div>
     
