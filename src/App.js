@@ -14,46 +14,88 @@ class App extends Component {
         super();
         this.state={            
             tareas
-        }
+            
+        };
         this.handleAddTarea = this.handleAddTarea.bind(this);
     }
     
     removeTarea(index){
-        this.setSate({
+        this.setState({
             tareas: this.state.tareas.filter((e,i) =>{
-              return i!==index     
+              return i!==index   
+                
             })
         });
     }
     
+    removeTareaO(index){
+        if(window.confirm('Are you sure yout bant '+index)) {
+           this.setState({
+               tareas:this.state.tareas.filter((e,i)=>{
+                return i!==index                
+             })
+                                               
+           })
+        }
+    }
+    
+    editTarea(index){
+         this.setState({
+            tareas: this.state.tareas.filter((e,i) =>{
+              return i!==index   
+                
+            })
+        });
+    }
     
     handleAddTarea(tarea){
         this.setState({
-            tareas:[... this.state.tareas,tarea]
+            tareas:[...this.state.tareas,tarea]
         })
+    }
+    
+    handleEditTarea(tarea){
+         this.setState({
+            tareas:[...this.state.tareas,tarea]
+        })
+        
+        
     }
 
   render() {
      const tareas= this.state.tareas.map((tarea,i)=>{
          return(
-            <div className="col-md-4">
+            <div className="col-md-4" key={i}>
              <div className="card mt-4">
-                 <div className="card-header">
+                 <div className="card-title text-center">
                     <h3>{tarea.title}</h3>
                     <span className="badge badge-pill badge-danger ml-2">
                         {tarea.priority}
                     </span>
                  </div>
                  <div className="card-body">
-                    <p>{tarea.description}</p>
+                    <p>{tarea.description}</p> 
                     <p><mark>{tarea.responsive}</mark></p>
                  </div>
+                 <div className="card-footer">
+                      <button
+                        className="btn btn-danger"
+                        onClick={this.removeTareaO.bind(this, i)}>
+                        Delete
+                      </button>
+                      <button
+                        className="btn btn-info ml-2"
+                        onClick={this.editTarea.bind(this, i)}>
+                        >
+                        Editar
+                      </button>
+                  </div>
              </div>
             </div>
-         )
-         
-     })
+         )         
+     });
       
+
     return (
         <div className="App">
         
@@ -73,7 +115,8 @@ class App extends Component {
         
                 <div className="col-md-4 text-center">
                     <img src={logo} className="App-logo" alt="logo" />
-                    <TareasForm onAddTarea={this.handleAddTarea}></TareasForm>
+                    <TareasForm onAddTarea={this.handleAddTarea}/>
+                    
                 </div>
         
                 <div className="col-md-8">

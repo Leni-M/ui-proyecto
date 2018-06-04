@@ -4,19 +4,23 @@ import React ,{Component} from 'react';
 class TareasForm extends Component{
      constructor(){
         super();
-        this.state={            
+        this.state={ 
+            
             title:'',
             responsive:'',
             description:'',
             priority:'low'
+            
         };
          this.handleInputChange = this.handleInputChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
     
     handleSubmit(e){
        e.preventDefault();
         this.props.onAddTarea(this.state);
+        console.log('sending the data...'+this.state);
+        
         this.setState({
       title: '',
       responsive: '',
@@ -46,6 +50,7 @@ class TareasForm extends Component{
                   name="title"
                   onChange={this.handleIntputChange}
                   className="form-control"
+                  
                   placeholder="Title"
                  />
               </div>
@@ -56,7 +61,7 @@ class TareasForm extends Component{
                   className="form-control"
                   placeholder="Responsive"
                   value={this.state.responsive}
-                  onchange={this.handleInputChange}
+                  onChange={this.handleInputChange}
                  />
               </div>
               <div className="form-group">
@@ -66,7 +71,7 @@ class TareasForm extends Component{
                   className="form-control"
                    value={this.state.description}
                   placeholder="Description"
-                  onchange={this.handleInputChange}
+                  onChange={this.handleInputChange}
                  />
               </div>
                <div className="form-group">
