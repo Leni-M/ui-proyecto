@@ -4,30 +4,26 @@ import React ,{Component} from 'react';
 class TareasForm extends Component{
      constructor(){
         super();
-        this.state={ 
-            
+        this.state={             
             title:'',
             responsive:'',
             description:'',
-            priority:'low'
+            priority:''
             
         };
          this.handleInputChange = this.handleInputChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
-    }
-    
+    }   
     handleSubmit(e){
        e.preventDefault();
-        this.props.onAddTarea(this.state);
-        console.log('sending the data...'+this.state);
-        
+        this.props.onAddTarea(this.state);                
         this.setState({
-      title: '',
-      responsive: '',
-      description: '',
-      priority: 'low'
+          title: '',
+          responsive: '',
+          description: '',
+          priority: ''
     });
-  }
+  }   
     
     handleInputChange(e){
         
@@ -36,22 +32,20 @@ class TareasForm extends Component{
           [name]:value
       });  
         console.log(this.state);
-    }
-    
-    
+    }   
     
     render(){
       return(
           <div className="card">
-            <form className="card-body" onSubmit={this.handleSubmit}>
+            <form className="card-body" onSubmit={this.handleSubmit}>          
               <div className="form-group">
                 <input 
                   type="text"
                   name="title"
-                  onChange={this.handleIntputChange}
                   className="form-control"
-                  
                   placeholder="Title"
+                  value={this.state.title}
+                  onChange={this.handleInputChange}
                  />
               </div>
               <div className="form-group">
@@ -75,22 +69,22 @@ class TareasForm extends Component{
                  />
               </div>
                <div className="form-group">
-                <select
+            <select
                 name="priority"
                 className="form-control"
                 value={this.state.priority}
                 onChange={this.handleInputChange}
-                >
-                <option>low</option>
-                <option>medium</option>
-                <option>high</option>
-                </select>
-              </div>
-                <button type="submit" className="btn btn-primary">
-                Save
-                </button>
-            </form>
+              >
+              <option>low</option>
+              <option>medium</option>
+              <option>high</option>
+            </select>
           </div>
+          <button type="submit" className="btn btn-primary">
+            Save
+          </button>
+        </form>
+      </div>
             )
         
     }    

@@ -17,6 +17,7 @@ class App extends Component {
             
         };
         this.handleAddTarea = this.handleAddTarea.bind(this);
+      
     }
     
     removeTarea(index){
@@ -29,8 +30,8 @@ class App extends Component {
     }
     
     removeTareaO(index){
-        if(window.confirm('Are you sure yout bant '+index)) {
-           this.setState({
+        if(window.confirm('Are you sure yout bant ')) {
+           this.setState({               
                tareas:this.state.tareas.filter((e,i)=>{
                 return i!==index                
              })
@@ -39,28 +40,15 @@ class App extends Component {
         }
     }
     
-    editTarea(index){
-         this.setState({
-            tareas: this.state.tareas.filter((e,i) =>{
-              return i!==index   
-                
-            })
-        });
-    }
+   
     
     handleAddTarea(tarea){
         this.setState({
-            tareas:[...this.state.tareas,tarea]
+             tareas: [...this.state.tareas, tarea]
         })
     }
     
-    handleEditTarea(tarea){
-         this.setState({
-            tareas:[...this.state.tareas,tarea]
-        })
-        
-        
-    }
+    
 
   render() {
      const tareas= this.state.tareas.map((tarea,i)=>{
@@ -85,7 +73,6 @@ class App extends Component {
                       </button>
                       <button
                         className="btn btn-info ml-2"
-                        onClick={this.editTarea.bind(this, i)}>
                         >
                         Editar
                       </button>
@@ -95,6 +82,7 @@ class App extends Component {
          )         
      });
       
+  
 
     return (
         <div className="App">
