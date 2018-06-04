@@ -1,6 +1,5 @@
-import React ,{Component} from 'React';
-import logo from '/logo.svg';
-import './App.css';
+import React ,{Component} from 'react';
+
 
 class TareasForm extends Component{
      constructor(){
@@ -11,23 +10,31 @@ class TareasForm extends Component{
             description:'',
             priority:'low'
         };
-         this.handleInputChange=this.handleInputChange.bind(this);
+         this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
     }
+    
+    handleSubmit(e){
+       e.preventDefault();
+        this.props.onAddTarea(this.state);
+        this.setState({
+      title: '',
+      responsive: '',
+      description: '',
+      priority: 'low'
+    });
+  }
     
     handleInputChange(e){
         
        const {value,name}=e.target;
       this.setState({
           [name]:value
-      })  
+      });  
         console.log(this.state);
     }
     
-    handleSubmit(e){
-       e.preventDefault();
-        this.props.onAddTarea(this.state);
-        console.lo('sending')
-    }
+    
     
     render(){
       return(
@@ -48,6 +55,7 @@ class TareasForm extends Component{
                   name="responsive"
                   className="form-control"
                   placeholder="Responsive"
+                  value={this.state.responsive}
                   onchange={this.handleInputChange}
                  />
               </div>
@@ -56,6 +64,7 @@ class TareasForm extends Component{
                   type="text"
                   name="description"
                   className="form-control"
+                   value={this.state.description}
                   placeholder="Description"
                   onchange={this.handleInputChange}
                  />
@@ -64,12 +73,20 @@ class TareasForm extends Component{
                 <select
                 name="priority"
                 className="form-control"
+                value={this.state.priority}
                 onChange={this.handleInputChange}
-                />
+                >
+                <option>low</option>
+                <option>medium</option>
+                <option>high</option>
+                </select>
               </div>
+                <button type="submit" className="btn btn-primary">
+                Save
+                </button>
             </form>
           </div>
-      )
+            )
         
     }    
     
