@@ -8,7 +8,6 @@ import {tareas} from './tasks.json';
 //subcomponentes
 import TareasForm from './components/TareasForm';
 
-
 class App extends Component {
     constructor(){
         super();
@@ -16,8 +15,7 @@ class App extends Component {
             tareas
             
         };
-        this.handleAddTarea = this.handleAddTarea.bind(this);
-      
+        this.handleAddTarea = this.handleAddTarea.bind(this);      
     }
     
     removeTarea(index){
@@ -38,17 +36,13 @@ class App extends Component {
                                                
            })
         }
-    }
-    
-   
+    }  
     
     handleAddTarea(tarea){
         this.setState({
              tareas: [...this.state.tareas, tarea]
         })
-    }
-    
-    
+    }   
 
   render() {
      const tareas= this.state.tareas.map((tarea,i)=>{
@@ -80,13 +74,10 @@ class App extends Component {
              </div>
             </div>
          )         
-     });
-      
-  
+     }); 
 
     return (
-        <div className="App">
-        
+        <div className="App">       
         
              <nav className="navbar navbar-dark bg-dark">
                 <a href="" className="text-white">
@@ -98,8 +89,7 @@ class App extends Component {
              </nav>
         
              <div className="container">
-              <div className="row mt-4">
-        
+              <div className="row mt-4">        
         
                 <div className="col-md-4 text-center">
                     <img src={logo} className="App-logo" alt="logo" />
